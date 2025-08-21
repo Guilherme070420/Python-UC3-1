@@ -1,0 +1,8 @@
+/* style.css - Aula 10*/
+body {
+    background-color: #f8f9fa;
+}
+.card {
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
