@@ -1,0 +1,49 @@
+{# Aula 10 #}
+{% extends 'site_loja/base.html' %}
+{% load static %} {# Carrega o template tag static para lidar com arquivos estáticos e de mídia #}
+
+{% block title %}Perfil de {{ user.username }}{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card p-4">
+                <h2 class="mb-4 text-center">Perfil do Usuário</h2>
+                <form method="POST" enctype="multipart/form-data"> {# enctype="multipart/form-data" é ESSENCIAL para upload de arquivos #}
+                    {% csrf_token %} {# Token de segurança do Django #}
+
+                    <div class="row mb-3">
+                        <div class="col-md-4 text-center">
+                            <img src="{{ user.perfil.imagem.url }}" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;" alt="Imagem de Perfil">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="{{ u_form.username.id_for_label }}" class="form-label">Nome de Usuário</label>
+                                {{ u_form.username }}
+                                {% for error in u_form.username.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="{{ u_form.email.id_for_label }}" class="form-label">Email</label>
+                                {{ u_form.email }}
+                                {% for error in u_form.email.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="{{ p_form.imagem.id_for_label }}" class="form-label">Atualizar Imagem de Perfil</label>
+                                {{ p_form.imagem }}
+                                {% for error in p_form.imagem.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Atualizar Perfil</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
