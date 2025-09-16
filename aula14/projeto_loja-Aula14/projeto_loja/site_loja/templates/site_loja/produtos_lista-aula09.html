@@ -1,0 +1,23 @@
+{% extends 'site_loja/base.html' %}
+
+{% block title %}Nossos Produtos - Minha Loja{% endblock %}
+
+{% block content %}
+
+    <h1>Nossos Produtos</h1>
+    <div class="row">
+        {% for produto in produtos %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ produto.nome }}</h5>
+                        <p class="card-text">R$ {{ produto.preco|floatformat:2 }}</p>
+                        <a href="#" class="btn btn-primary">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Nenhum produto encontrado.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

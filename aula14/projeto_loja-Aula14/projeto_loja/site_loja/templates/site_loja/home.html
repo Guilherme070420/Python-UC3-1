@@ -1,0 +1,43 @@
+{% extends 'site_loja/base.html' %}
+
+{% block title %}Página Inicial - Minha Loja{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }} 
+    <style>
+        .jumbotron {
+            background-color: #f8f9fa;
+            padding: 5rem;
+            border-radius: .3rem;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron text-center bg-light p-5 rounded">
+        <h1 class="display-4">Bem-vindo à nossa Loja Online!</h1>
+        <p class="lead">Os melhores produtos, com os melhores preços.</p>
+        <hr class="my-4">
+        <p>Explore nossa seleção e encontre o que você procura.</p>
+        <a class="btn btn-primary btn-lg" 
+            href="{% url 'site_loja:produtos_lista' %}" 
+            role="button">
+            Ver Produtos
+        </a>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <h3>Qualidade Garantida</h3>
+            <p>Trabalhamos apenas com produtos de alta qualidade e fornecedores confiáveis.</p>
+        </div>
+        <div class="col-md-4">
+            <h3>Entrega Rápida</h3>
+            <p>Receba seus produtos no conforto da sua casa, com agilidade e segurança.</p>
+        </div>
+        <div class="col-md-4">
+            <h3>Suporte ao Cliente</h3>
+            <p>Nossa equipe está sempre pronta para te ajudar com qualquer dúvida ou problema.</p>
+        </div>
+    </div>
+{% endblock %}
