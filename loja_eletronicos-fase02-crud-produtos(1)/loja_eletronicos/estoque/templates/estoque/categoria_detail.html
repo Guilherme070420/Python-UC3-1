@@ -1,0 +1,42 @@
+{% extends 'estoque/base.html' %}
+
+{% block title %}Estoque - Loja de Eletronicos{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }} 
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        {% if produto.imagem %}
+        <img src="{{ produto.imagem.url }}" class="img-fluid rounded" alt="{{ produto.nome }}">
+        {% else %}
+        <img src="https://via.placeholder.com/600x400.png?text=Sem+Imagem" class="img-fluid rounded" alt="Sem Imagem">
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <h1>{{ produto.nome }}</h1>
+        <p class="lead">{{ produto.descricao }}</p>
+        <hr>
+        <h3><strong>Preço:</strong> R$ {{ produto.preco }}</h3>
+        <p><strong>Em estoque:</strong> {{ produto.estoque }} unidades</p>
+        <p><strong>Status:</strong> {% if produto.disponivel %}Disponível{% else %}Indisponível{% endif %}</p>
+        <p><strong>Categoria:</strong> {{ produto.categoria.identificacao|default:"N/A" }}</p>
+        <div>
+            <strong>Tags:</strong>
+            {% for tag in produto.tag.all %}
+            <span class="badge bg-secondary">{{ tag.identificacao }}</span>
+            {% empty %}
+            <span class="badge bg-light text-dark">Nenhuma tag</span>
+            {% endfor %}
+        </div>
+        <hr>
+        <a href="{% url 'estoque:produto_update' produto.pk %}" class="btn btn-warning">Editar Produto</a>
+        <a href="{% url 'estoque:produto_list' %}" class="btn btn-secondary">Voltar para a Lista</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'estoque/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Estoque - Loja de Eletronicos{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }} 
+
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ view_title }}</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+        <label for="{{ form.nome.id_for_label }}" class="form-label">Nome do Produto</label>
+        {% render_field form.nome class="form-control" %}
+    </div>
+
+    <div class="mb-3">
+        <label for="{{ form.descricao.id_for_label }}" class="form-label">Descrição</label>
+        {% render_field form.descricao class="form-control" rows="4" %}
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="{{ form.preco.id_for_label }}" class="form-label">Preço</label>
+            {% render_field form.preco class="form-control" %}
+        </div>
+        <div class="col-md-6">
+            <label for="{{ form.estoque.id_for_label }}" class="form-label">Estoque</label>
+            {% render_field form.estoque class="form-control" %}
+        </div>
+    </div>
+    
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="{{ form.categoria.id_for_label }}" class="form-label">Categoria</label>
+            {% render_field form.categoria class="form-select" %}
+        </div>
+        <div class="col-md-6">
+            <label for="{{ form.tag.id_for_label }}" class="form-label">Tags</label>
+            {% render_field form.tag class="form-select" size="5" %}
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="{{ form.imagem.id_for_label }}" class="form-label">Imagem do Produto</label>
+        {% render_field form.imagem class="form-control" %}
+    </div>
+
+    <div class="mb-3 form-check">
+        {% render_field form.disponivel class="form-check-input" %}
+        <label for="{{ form.disponivel.id_for_label }}" class="form-check-label">Produto Disponível</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="{% url 'estoque:produto_list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
