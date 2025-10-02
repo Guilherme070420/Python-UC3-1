@@ -64,11 +64,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="estoque:Categoria"> <i class="bi bi-bookmark-star-fill"></i> Categorias
+                        <a class="nav-link" 
+                            href="{% url 'estoque:categoria_list' %}"> 
+                            <i class="bi bi-bookmark-star-fill"></i> Categorias
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> <i class="bi bi-tags-fill"></i> Tags
+                        <a class="nav-link" 
+                            href="{% url 'estoque:tag_list' %}"> 
+                            <i class="bi bi-tags-fill"></i> Tags
                         </a>
                     </li>
                 </ul>

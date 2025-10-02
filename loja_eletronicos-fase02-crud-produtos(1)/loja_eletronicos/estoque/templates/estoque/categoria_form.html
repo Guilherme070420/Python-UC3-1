@@ -1,0 +1,24 @@
+{% extends 'estoque/base.html' %}
+{% load crispy_forms_tags static %}
+{%block title %}Estoque - Loja de Eletronicos {% endblock%}
+
+{% block content%}
+
+<h1> {{ view_title}}</h1>
+<form method="post" enctype="multipart/form-data">
+
+
+    {% {% csrf_token %} %}
+
+    {{form | crispy }}
+
+    {#% crispy form %#}
+
+    <button type="submit" class="btn btn-primary"Salvar</button>
+
+    <a href="{% url 'estoque:categoria_list' %}"
+        class="btn btn-secondary">Cancelar</a>
+
+
+</form>
+{% endblock%}

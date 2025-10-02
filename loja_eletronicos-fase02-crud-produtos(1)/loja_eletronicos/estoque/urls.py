@@ -26,12 +26,10 @@ urlpatterns = [
 #CATEGORIA
 
     path('categorias/', views.CategoriaListView.as_view(), name='categoria_list'),
-    path('categoria/<int:pk>/', views.CategoriaDetailView.as_view(), name='Categoria_detail'),
-    #path('Categoria/listar/', views.CategoriaTabelaListView.as_view(), name='Categoria_list'),
-    #path('Categoria/<int:pk>/', views.CategoriaDetailView.as_view(), name='Categoria_detail'),
-    #path('Categoria/novo/', views.CategoriaCreateView.as_view(), name='Categoria_create'),
-    #path('Categoria/<int:pk>/editar/', views.CategoriaUpdateView.as_view(), name='Categoria_update'),
-    #path('Categoria/<int:pk>/deletar/', views.CategoriaDeleteView.as_view(), name='Categoria_delete'),
-   
+    path('categorias/listar/', views.CategoriaTabelaListView.as_view(), name='categoria_tabela_list'),
+    path('categorias/<int:pk>/', views.CategoriaCreateView.as_view(), name='categoria_create'),
+    path('categorias/<int:pk>/editar/', views.CategoriaUpdateView.as_view(), name='categoria_update'),
+    path('categorias/<int:pk>/deletar/', views.CategoriaDeleteView.as_view(), name='categoria_delete'),
+    
 
 ]
