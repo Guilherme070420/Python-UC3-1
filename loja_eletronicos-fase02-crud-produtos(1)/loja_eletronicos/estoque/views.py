@@ -34,6 +34,8 @@ def index(request):
     # A função render 'junta' o template com os dados e retorna uma resposta HTTP.
     return render(request, 'estoque/index_estoque.html', context)
 
+    
+
 ##
 # Produtos
 ##
@@ -103,17 +105,15 @@ class ProdutoDeleteView(DeleteView):
 
 
 # CATEGORIA
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Categoria
+
 class CategoriaListView(ListView):
     model = Categoria
-    template_name = 'estoque/categoria_list.html'
+    template_name = 'estoque/categoria_list.html'  # Você pode criar um template para listar categorias
     context_object_name = 'categorias'
 
-class CategoriaTabelaListView(ListView):
-    model = Categoria
-    template_name = 'estoque/categoria_tabela_list.html'
-    context_object_name = 'categorias'
-
-#DETAIL
 class CategoriaDetailView(DetailView):
     model = Categoria
     template_name = 'estoque/categoria_detail.html'
@@ -121,20 +121,23 @@ class CategoriaDetailView(DetailView):
 
 class CategoriaCreateView(CreateView):
     model = Categoria
-    fields = '__all__'
-    template_name = 'estoque/categoria_create.html'
-    success_url = reverse_lazy('categoria_list')
+    fields = ['identificacao', 'descricao']
+    template_name = 'estoque/categoria_form.html'
+    success_url = reverse_lazy('estoque:categoria_list')
 
 class CategoriaUpdateView(UpdateView):
     model = Categoria
-    fields = '__all__'
-    template_name = 'estoque/categoria_update.html'
-    success_url = reverse_lazy('categoria_list')
+    fields = ['identificacao', 'descricao']
+    template_name = 'estoque/categoria_form.html'
+    success_url = reverse_lazy('estoque:categoria_list')
 
 class CategoriaDeleteView(DeleteView):
     model = Categoria
     template_name = 'estoque/categoria_confirm_delete.html'
-    success_url = reverse_lazy('categoria_list')
+    success_url = reverse_lazy('estoque:categoria_list')
+
+    
+
 
 
     #Tag
@@ -170,6 +173,7 @@ class ProtutoTagDeleteView(DeleteView):
     model = Protuto_Tag
     template_name = 'estoque/produto_tag.html'
     success_url = reverse_lazy('tag_list')
+
 
 
 

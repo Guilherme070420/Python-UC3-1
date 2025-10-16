@@ -1,24 +1,25 @@
 {% extends 'estoque/base.html' %}
-{% load crispy_forms_tags static %}
-{%block title %}Estoque - Loja de Eletronicos {% endblock%}
+{% load widget_tweaks %}
+{% block content %}
+<div class="category-form-container">
+    <div class="category-form-title">{{ view_title|default:"Nova Categoria" }}</div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="{{ form.identificacao.id_for_label }}" class="form-label">Identificação</label>
+            {% render_field form.identificacao class="form-control" %}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.descricao.id_for_label }}" class="form-label">Descrição</label>
+            {% render_field form.descricao class="form-control" rows="4" %}
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-submit">Salvar</button>
+            <a href="{% url 'estoque:categoria_list' %}" class="btn btn-cancel">Cancelar</a>
 
-{% block content%}
-
-<h1> {{ view_title}}</h1>
-<form method="post" enctype="multipart/form-data">
-
-
-    {% {% csrf_token %} %}
-
-    {{form | crispy }}
-
-    {#% crispy form %#}
-
-    <button type="submit" class="btn btn-primary"Salvar</button>
-
-    <a href="{% url 'estoque:categoria_list' %}"
-        class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
 
 
-</form>
-{% endblock%}
+{% endblock %}

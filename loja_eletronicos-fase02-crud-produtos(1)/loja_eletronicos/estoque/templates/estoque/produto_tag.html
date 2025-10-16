@@ -1,36 +1,138 @@
 {% extends 'estoque/base.html' %}
+{% load static %}
 
-{% block title %}Estoque - Loja de Eletronicos{% endblock %}
+{% block title %}Estoque - Tecnologia de Ponta{% endblock %}
 
 {% block extra_css %}
-    {{ block.super }} 
+    {{ block.super }}
+    <style>
+        body {
+            background-color: #0D1B2A;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+        }
 
+        .tag-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #1B263B;
+            border-radius: 8px;
+        }
+
+        .tag-header h1 {
+            color: #FFD700;
+        }
+
+        .btn-add-tag {
+            background-color: #FFD700;
+            color: #0D1B2A;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .btn-add-tag:hover {
+            background-color: #e6c200;
+            color: #0D1B2A;
+        }
+
+        .tag-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tag-card {
+            background-color: #1B263B;
+            border: 1px solid #415A77;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .tag-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 5px;
+        }
+
+        .tag-description {
+            font-size: 0.95em;
+            color: #E0E1DD;
+            margin-bottom: 10px;
+        }
+
+        .tag-actions .btn {
+            margin-right: 5px;
+            color: #fff;
+        }
+
+        .btn-info {
+            background-color: #007BFF;
+            border: none;
+        }
+
+        .btn-warning {
+            background-color: #FFC107;
+            border: none;
+            color: #0D1B2A;
+        }
+
+        .btn-danger {
+            background-color: #DC3545;
+            border: none;
+        }
+
+        .alert-warning {
+            background-color: #FFD700;
+            color: #0D1B2A;
+            border: none;
+            font-weight: bold;
+        }
+
+        a.btn-sm:hover {
+            opacity: 0.9;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Nossos Produtos</h1>
-    <a href="{% url 'estoque:produto_create' %}" class="btn btn-success">Adicionar Novo Produto</a>
+<div class="tag-header">
+    <h1>Gerenciar Tags</h1>
+    <a href="{% url 'estoque:tag_create' %}" class="btn btn-add-tag">
+        <i class="bi bi-plus-circle"></i> Nova Tag
+    </a>
 </div>
 
-<div class="row">
+{% if tags %}
+<div class="tag-grid">
     {% for tag in tags %}
-    <div class="col-md-4 mb-4">
-                <h5 class="card-title">{{ cat.identificacao }}</h5>
-                <p class="card-text text-muted">{{ cat.descricao }}</p>
-                <h6 class="card-subtitle mb-2">R$ {{ produto.preco }}</h6>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-primary btn-sm">Detalhes</a>
-                    <a href="#" class="btn btn-warning btn-sm">Editar</a>
-                    <a href="#" class="btn btn-danger btn-sm">Deletar</a>
-                </div>
-            </div>
+    <div class="tag-card">
+        <div class="tag-name">{{ tag.identificacao }}</div>
+        <div class="tag-description">{{ tag.descricao|default:"Sem descrição." }}</div>
+        <div class="tag-actions">
+            <a href="{% url 'estoque:tag_detail' tag.pk %}" class="btn btn-sm btn-info">
+                <i class="bi bi-eye"></i>
+            </a>
+            <a href="{% url 'estoque:tag_update' tag.pk %}" class="btn btn-sm btn-warning">
+                <i class="bi bi-pencil"></i>
+            </a>
+            <a href="{% url 'estoque:tag_delete' tag.pk %}" class="btn btn-sm btn-danger">
+                <i class="bi bi-trash"></i>
+            </a>
         </div>
-    </div>
-    {% empty %}
-    <div class="col">
-        <p class="text-center">Nenhum produto cadastrado ainda.</p>
     </div>
     {% endfor %}
 </div>
+{% else %}
+<div class="alert alert-warning text-center">
+    Nenhuma tag cadastrada ainda. Clique em <strong>Nova Tag</strong> para criar uma.
+</div>
+{% endif %}
 {% endblock %}

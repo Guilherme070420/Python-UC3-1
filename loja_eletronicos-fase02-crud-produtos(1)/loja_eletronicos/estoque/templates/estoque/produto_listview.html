@@ -3,7 +3,7 @@
 <div class="category-header">
     <h1>Categorias</h1>
 <a href="{% url 'estoque:categoria_create' %}" class="btn btn-add-category">
-    <i class="bi bi-plus-circle"></i> Nova Categoria
+    <i class="bi bi-plus-circle"></i> Nova tag
 </a>
 </div>
 
@@ -20,7 +20,7 @@
     </div>
     {% empty %}
     <div class="col">
-        <p class="text-center text-light">Nenhuma categoria cadastrada ainda.</p>
+        <p class="text-center text-light">Nenhuma tag cadastrada ainda.</p>
     </div>
     {% endfor %}
 </div>

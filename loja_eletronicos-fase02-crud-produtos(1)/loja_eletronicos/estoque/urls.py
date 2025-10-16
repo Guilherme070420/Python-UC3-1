@@ -24,12 +24,25 @@ urlpatterns = [
     path('produtos/<int:pk>/deletar/', views.ProdutoDeleteView.as_view(), name='produto_delete'),
 
 #CATEGORIA
-
+     path('categorias/novo/', views.CategoriaCreateView.as_view(), name='categoria_create'),
     path('categorias/', views.CategoriaListView.as_view(), name='categoria_list'),
-    path('categorias/listar/', views.CategoriaTabelaListView.as_view(), name='categoria_tabela_list'),
-    path('categorias/<int:pk>/', views.CategoriaCreateView.as_view(), name='categoria_create'),
+    path('categorias/listar/', views.CategoriaListView.as_view(), name='categoria_tabela_list'),
+    path('categorias/<int:pk>/', views.CategoriaDetailView.as_view(), name='categoria_detail'),
     path('categorias/<int:pk>/editar/', views.CategoriaUpdateView.as_view(), name='categoria_update'),
     path('categorias/<int:pk>/deletar/', views.CategoriaDeleteView.as_view(), name='categoria_delete'),
+
     
 
+
+
+
+#TAGS#
+
+    path('tags/', views.ProtutoTagListView.as_view(), name='tag_list'),
+    path('tags/<int:pk>/', views.ProtutoTagDetailView.as_view(), name='tag_detail'),
+    path('tags/novo/', views.ProtutoTagCreateView.as_view(), name='tag_create'),
+    path('tags/<int:pk>/editar/', views.ProtutoTagUpdateView.as_view(), name='tag_update'),
+    path('tags/<int:pk>/deletar/', views.ProtutoTagDeleteView.as_view(), name='tag_delete'),
+
+    
 ]

@@ -1,42 +1,15 @@
 {% extends 'estoque/base.html' %}
-
-{% block title %}Estoque - Loja de Eletronicos{% endblock %}
-
-{% block extra_css %}
-    {{ block.super }} 
-
-{% endblock %}
-
 {% block content %}
-
-<div class="row">
-    <div class="col-md-6">
-        {% if produto.imagem %}
-        <img src="{{ produto.imagem.url }}" class="img-fluid rounded" alt="{{ produto.nome }}">
-        {% else %}
-        <img src="https://via.placeholder.com/600x400.png?text=Sem+Imagem" class="img-fluid rounded" alt="Sem Imagem">
-        {% endif %}
+<div class="category-detail-container">
+    <div class="category-title">{{ categoria.identificacao }}</div>
+    <div class="category-info">
+        <p><strong>ID:</strong> {{ categoria.id }}</p>
+        <p><strong>Descrição:</strong> {{ categoria.descricao }}</p>
     </div>
-    <div class="col-md-6">
-        <h1>{{ produto.nome }}</h1>
-        <p class="lead">{{ produto.descricao }}</p>
-        <hr>
-        <h3><strong>Preço:</strong> R$ {{ produto.preco }}</h3>
-        <p><strong>Em estoque:</strong> {{ produto.estoque }} unidades</p>
-        <p><strong>Status:</strong> {% if produto.disponivel %}Disponível{% else %}Indisponível{% endif %}</p>
-        <p><strong>Categoria:</strong> {{ produto.categoria.identificacao|default:"N/A" }}</p>
-        <div>
-            <strong>Tags:</strong>
-            {% for tag in produto.tag.all %}
-            <span class="badge bg-secondary">{{ tag.identificacao }}</span>
-            {% empty %}
-            <span class="badge bg-light text-dark">Nenhuma tag</span>
-            {% endfor %}
-        </div>
-        <hr>
-        <a href="{% url 'estoque:produto_update' produto.pk %}" class="btn btn-warning">Editar Produto</a>
-        <a href="{% url 'estoque:produto_list' %}" class="btn btn-secondary">Voltar para a Lista</a>
+    <div class="category-actions">
+        <a href="{% url 'estoque:categoria_update' categoria.pk %}" class="btn btn-warning"><i class="bi bi-pencil"></i> Editar</a>
+<a href="{% url 'estoque:categoria_delete' categoria.pk %}" class="btn btn-danger"><i class="bi bi-trash"></i> Excluir</a>
+<a href="{% url 'estoque:categoria_list' %}" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Voltar</a>
     </div>
 </div>
-
 {% endblock %}

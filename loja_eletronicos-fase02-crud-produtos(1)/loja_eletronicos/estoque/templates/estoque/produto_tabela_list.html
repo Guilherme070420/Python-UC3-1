@@ -1,6 +1,6 @@
 {% extends 'estoque/base.html' %}
 
-{% block title %}Estoque - Loja de Eletronicos{% endblock %}
+{% block title %}Estoque - Loja de Tecnologia de Ponta{% endblock %}
 
 {% block extra_css %}
     {{ block.super }} 
@@ -8,10 +8,12 @@
 {% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Nossos Produtos</h1>
+<div class="d-flex justify-content-between align-items-center mb-4" style="background-color: #001F3F; color: #FFDC00; padding: 20px; border-radius: 8px;">
+    <h1 class="m-0">Nossos Produtos</h1>
     <a href="{% url 'estoque:produto_create' %}" class="btn btn-success">Adicionar Novo Produto</a>
 </div>
+
+
 
 <div class="card">
     <div class="card-body">

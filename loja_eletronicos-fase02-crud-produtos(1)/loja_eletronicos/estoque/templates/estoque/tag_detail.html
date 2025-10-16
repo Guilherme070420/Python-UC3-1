@@ -1,0 +1,16 @@
+{% extends 'estoque/base.html' %}
+{% block content %}
+<div class="tag-detail-container">
+    <div class="tag-title">{{ tag.identificacao }}</div>
+    <div class="tag-info">
+        <p><strong>ID:</strong> {{ tag.id }}</p>
+        <p><strong>Descrição:</strong> {{ tag.descricao|default:"Sem descrição." }}</p>
+    </div>
+    <div class="tag-actions">
+        <a href="{% url 'estoque:tag_update' tag.pk %}" class="btn btn-warning"><i class="bi bi-pencil"></i> Editar</a>
+        <a href="{% url 'estoque:tag_delete' tag.pk %}" class="btn btn-danger"><i class="bi bi-trash"></i> Excluir</a>
+        <a href="{% url 'estoque:tag_list' %}" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Voltar</a>
+    </div>
+</div>
+
+{% endblock %}

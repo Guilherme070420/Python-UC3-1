@@ -1,0 +1,16 @@
+{% extends 'estoque/base.html' %}
+{% block content %}
+<div class="delete-tag-container">
+    <div class="delete-tag-title">Excluir Tag</div>
+    <div class="delete-tag-text">
+        Tem certeza que deseja excluir a tag <span class="delete-tag-name">{{ object.identificacao }}</span>?
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="delete-tag-actions">
+            <button type="submit" class="btn btn-confirm"><i class="bi bi-trash-fill"></i> Confirmar</button>
+            <a href="{% url 'estoque:tag_list' %}" class="btn btn-cancel"><i class="bi bi-arrow-left-circle"></i> Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
