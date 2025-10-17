@@ -1,3 +1,5 @@
+import os
+from PIL import Image
 from django.db import models
 
 # Importa o modelo de usuário padrão do Django
@@ -9,7 +11,7 @@ from PIL import Image
 
 class Perfil(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    imagem = models.ImageField(default='perfil_padrao.jpg', upload_to='imagens_perfil')
+    imagem = models.ImageField(upload_to='imagens_perfil', default='perfil_padrao.jpg')
 
     def __str__(self):
         return f'Perfil de {self.usuario.username}'
@@ -17,12 +19,8 @@ class Perfil(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs) # Salva a imagem primeiro
 
-        img = Image.open(self.imagem.path) # Abre a imagem
-        if img.height > 300 or img.width > 300: # Verifica se é maior que 300x300 pixels
-            output_size = (300, 300)
-            img.thumbnail(output_size) # Redimensiona a imagem
-            img.save(self.imagem.path) # Salva a imagem redimensionada
-
+        if self.imagem and os.path.exists(self.imagem.path):
+            img = Image.open(self.imagem.path)
 
 class Comentario(models.Model):
     
@@ -50,4 +48,4 @@ class Comentario(models.Model):
     class Meta:
         verbose_name = "Comentário"
         verbose_name_plural = "Comentários"
-        ordering = ['-data_publicacao']        
+        ordering = ['-data_publicacao']

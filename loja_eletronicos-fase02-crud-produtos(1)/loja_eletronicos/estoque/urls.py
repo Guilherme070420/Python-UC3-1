@@ -32,10 +32,6 @@ urlpatterns = [
     path('categorias/<int:pk>/deletar/', views.CategoriaDeleteView.as_view(), name='categoria_delete'),
 
     
-
-
-
-
 #TAGS#
 
     path('tags/', views.ProtutoTagListView.as_view(), name='tag_list'),
@@ -43,6 +39,15 @@ urlpatterns = [
     path('tags/novo/', views.ProtutoTagCreateView.as_view(), name='tag_create'),
     path('tags/<int:pk>/editar/', views.ProtutoTagUpdateView.as_view(), name='tag_update'),
     path('tags/<int:pk>/deletar/', views.ProtutoTagDeleteView.as_view(), name='tag_delete'),
+
+   
+    
+    # 🛒 Carrinho
+    path('carrinho/', views.ver_carrinho, name='ver_carrinho'),
+    path('carrinho/adicionar/<int:produto_id>/', views.adicionar_ao_carrinho, name='adicionar_ao_carrinho'),
+    path('carrinho/remover/<int:produto_id>/', views.remover_do_carrinho, name='remover_do_carrinho'),
+    path('carrinho/limpar/', views.limpar_carrinho, name='limpar_carrinho'),
+
 
     
 ]

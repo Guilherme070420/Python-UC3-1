@@ -1,20 +1,8 @@
 from django.db import models
 
 
-
 ##
 # Categoria
-
-# models.py
-# class Categoria(models.Model):
-#     identificacao = models.CharField(max_length=100)
-#     descricao = models.TextField(blank=True, null=True)
-
-#     def __str__(self):
-#         return self.identificacao
-
-        
-
 ##
 class Categoria(models.Model):
     identificacao = models.CharField(max_length=100, 
