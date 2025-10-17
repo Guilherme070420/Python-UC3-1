@@ -1,0 +1,39 @@
+{% extends 'estoque/base.html' %}
+{% load widget_tweaks %}
+{% block title %}Criar Conta - eletronico{% endblock %}
+
+{% block custom_css %}
+<style>
+  .auth-box { max-width:640px; margin:40px auto; padding:25px; background:rgba(0,0,0,0.75);
+    border:1px solid #00fff2; border-radius:10px; }
+  label{ color:#00fff2; }
+  .btn-save{ background:#00fff2; color:#000; font-weight:bold; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="auth-box">
+  <h3 style="color:#00fff2; text-align:center;">Criar Conta</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="row">
+      <div class="col-md-6 mb-2">{% render_field form.username class="form-control" placeholder="Usuário" %}</div>
+      <div class="col-md-6 mb-2">{% render_field form.email class="form-control" placeholder="Email" %}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-2">{% render_field form.first_name class="form-control" placeholder="Nome" %}</div>
+      <div class="col-md-6 mb-2">{% render_field form.last_name class="form-control" placeholder="Sobrenome" %}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-2">{% render_field form.password1 class="form-control" placeholder="Senha" %}</div>
+      <div class="col-md-6 mb-2">{% render_field form.password2 class="form-control" placeholder="Repita a senha" %}</div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-3">
+      <button class="btn btn-save">Criar</button>
+      <a href="{% url 'loja:login' %}" class="btn btn-secondary">Já tenho conta</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'estoque/base.html' %}
+{% load static %}
+{% block title %}Login - eletronico{% endblock %}
+
+{% block custom_css %}
+<style>
+  .auth-box { max-width:420px; margin:40px auto; padding:25px; background:rgba(0,0,0,0.75);
+    border:1px solid #00fff2; border-radius:10px; }
+  label{ color:#00fff2; }
+  .btn-login{ background:#00fff2; color:#000; font-weight:bold; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="auth-box">
+  <h3 style="color:#00fff2; text-align:center;">Entrar</h3>
+  <form method="post">
+    {% csrf_token %}
+    {% if messages %}{% for m in messages %}
+      <div class="alert alert-{{ m.tags }}">{{ m }}</div>
+    {% endfor %}{% endif %}
+    <input name="username" class="form-control mb-2" placeholder="Usuário" required>
+    <input name="password" type="password" class="form-control mb-2" placeholder="Senha" required>
+    <input type="hidden" name="next" value="{{ request.GET.next }}">
+    <div class="d-flex justify-content-between mt-3">
+      <button class="btn btn-login">Entrar</button>
+      <a href="{% url 'loja:signup' %}" class="btn btn-secondary">Criar conta</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
