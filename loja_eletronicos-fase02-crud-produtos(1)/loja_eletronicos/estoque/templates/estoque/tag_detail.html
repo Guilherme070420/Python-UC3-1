@@ -1,4 +1,83 @@
 {% extends 'estoque/base.html' %}
+
+{% block title %}Detalhes da Tag - tecnologia de ponta{% endblock %}
+
+{% block custom_css %}
+<style>
+    .tag-detail-container {
+    background-color: #fffde7; /* amarelo claro permanece */
+    border: 2px solid #1e88e5; /* azul forte */
+    border-radius: 10px;
+    padding: 25px;
+    max-width: 600px;
+    margin: 40px auto;
+    color: #1e1e1e;
+    box-shadow: 0 0 20px rgba(30, 136, 229, 0.2);
+    text-align: center;
+}
+
+.tag-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e88e5;
+    text-shadow: 0 0 6px #90caf9;
+    margin-bottom: 20px;
+}
+
+.tag-info p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #424242;
+}
+
+.tag-info strong {
+    color: #fbc02d; /* amarelo mais forte */
+    font-weight: bold;
+}
+
+.tag-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tag-actions a {
+    min-width: 100px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.tag-actions .btn-blue {
+    background-color: #1e88e5;
+    color: #fff;
+    border: none;
+}
+
+.tag-actions .btn-blue:hover {
+    background-color: #1565c0;
+    box-shadow: 0 0 10px #64b5f6;
+}
+
+.tag-actions .btn-yellow {
+    background-color: #fbc02d; /* amarelo mais forte */
+    color: #1e1e1e;
+    border: none;
+}
+
+.tag-actions .btn-yellow:hover {
+    background-color: #f9a825;
+    box-shadow: 0 0 12px #fbc02d;
+}
+
+
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="tag-detail-container">
     <div class="tag-title">{{ tag.identificacao }}</div>
@@ -12,5 +91,4 @@
         <a href="{% url 'estoque:tag_list' %}" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Voltar</a>
     </div>
 </div>
-
 {% endblock %}

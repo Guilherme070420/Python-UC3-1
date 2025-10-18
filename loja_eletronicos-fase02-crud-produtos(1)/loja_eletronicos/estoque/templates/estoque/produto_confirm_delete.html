@@ -1,24 +1,94 @@
 {% extends 'estoque/base.html' %}
-{% load widget_tweaks %}
 
-{% block title %}Estoque - Tecnologia de Ponta{% endblock %}
+{% block title %}Excluir {{ produto.nome }} - tecnologia de ponta{% endblock %}
 
-{% block extra_css %}
-    {{ block.super }} 
+{% block custom_css %}
+<style>
+    .delete-container {
+        background: rgba(0, 0, 0, 0.75);
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid #ff4444;
+        box-shadow: 0 0 20px #ff444460;
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
 
+    .delete-title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #ff4444;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .delete-text {
+        color: #e0e0e0;
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+
+    .delete-product-name {
+        color: #00e0ff;
+        font-weight: 600;
+    }
+
+    .delete-actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn-confirm-delete {
+        background: #ff4444;
+        color: #fff;
+        border-radius: 25px;
+        padding: 10px 20px;
+        font-weight: bold;
+        transition: transform 0.2s;
+    }
+
+    .btn-confirm-delete:hover {
+        background: #cc0000;
+        transform: scale(1.05);
+    }
+
+    .btn-cancel-delete {
+        background: #00e0ff;
+        color: #000;
+        border-radius: 25px;
+        padding: 10px 20px;
+        font-weight: bold;
+        transition: transform 0.2s;
+    }
+
+    .btn-cancel-delete:hover {
+        background: #00b0cc;
+        transform: scale(1.05);
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="card bg-light p-4">
-    <h1 class="card-title">Confirmar Exclusão</h1>
-    <p class="lead">Você tem certeza que deseja deletar o produto <strong>"{{ produto.nome }}"</strong>?</p>
-    <p>Esta ação não poderá ser desfeita.</p>
+<div class="delete-container">
+    <div class="delete-title">Excluir Produto</div>
+    <div class="delete-text">
+        Tem certeza que deseja excluir o produto <span class="delete-product-name">{{ produto.nome }}</span>?<br>
+        Esta ação não poderá ser desfeita.
+    </div>
 
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Sim, tenho certeza</button>
-        <a href="{% url 'estoque:produto_detail' produto.pk %}" class="btn btn-secondary">Cancelar</a>
+        <div class="delete-actions">
+            <button type="submit" class="btn btn-confirm-delete">
+                <i class="bi bi-trash-fill"></i> Confirmar Exclusão
+            </button>
+            <a href="{% url 'estoque:produto_list' %}" class="btn btn-cancel-delete">
+                <i class="bi bi-arrow-left-circle"></i> Cancelar
+            </a>
+        </div>
     </form>
 </div>
-
 {% endblock %}

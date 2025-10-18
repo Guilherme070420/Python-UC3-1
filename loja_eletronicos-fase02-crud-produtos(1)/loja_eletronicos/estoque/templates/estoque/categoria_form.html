@@ -1,5 +1,74 @@
 {% extends 'estoque/base.html' %}
 {% load widget_tweaks %}
+
+{% block title %}{{ view_title|default:"Nova Categoria" }} - eletronico{% endblock %}
+
+{% block custom_css %}
+<style>
+    .category-form-container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid #00e0ff;
+        box-shadow: 0 0 20px #00e0ff50;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .category-form-title {
+        color: #00e0ff;
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    label {
+        color: #e0e0e0;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        background-color: #1a1a1a;
+        border: 1px solid #00e0ff;
+        color: #fff;
+        border-radius: 8px;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 10px #00e0ff;
+        background-color: #000;
+    }
+
+    .form-actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-submit {
+        background: #00e0ff;
+        color: #000;
+        border-radius: 25px;
+        padding: 10px 20px;
+        font-weight: bold;
+    }
+
+    .btn-submit:hover {
+        background: #00b0cc;
+    }
+
+    .btn-cancel {
+        background: #ff4444;
+        color: #fff;
+        border-radius: 25px;
+        padding: 10px 20px;
+    }      
+    .btn-cancel:hover {
+        background: #cc0000;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="category-form-container">
     <div class="category-form-title">{{ view_title|default:"Nova Categoria" }}</div>
@@ -20,6 +89,5 @@
         </div>
     </form>
 </div>
-
-
 {% endblock %}
+

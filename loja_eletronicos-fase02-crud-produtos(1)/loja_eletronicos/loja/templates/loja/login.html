@@ -4,10 +4,55 @@
 
 {% block custom_css %}
 <style>
-  .auth-box { max-width:420px; margin:40px auto; padding:25px; background:rgba(0,0,0,0.75);
-    border:1px solid #00fff2; border-radius:10px; }
-  label{ color:#00fff2; }
-  .btn-login{ background:#00fff2; color:#000; font-weight:bold; }
+  .auth-box {
+    max-width: 420px;
+    margin: 40px auto;
+    padding: 25px;
+    background: rgba(30, 136, 229, 0.85); /* azul forte translúcido */
+    border: 2px solid #ffea00; /* amarelo forte */
+    border-radius: 10px;
+    color: #ffea00; /* texto amarelo */
+  }
+  label {
+    color: #ffea00; /* amarelo forte */
+  }
+  .btn-login {
+    background: linear-gradient(45deg, #ffea00, #fdd835); /* amarelo forte gradiente */
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .btn-login:hover {
+    box-shadow: 0 0 15px #ffea00;
+    transform: scale(1.05);
+  }
+  .btn-secondary {
+    background: #1e88e5; /* azul forte */
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 20px;
+    border: none;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-secondary:hover {
+    background: #1565c0; /* azul mais escuro */
+    color: #ffea00; /* amarelo forte */
+    text-decoration: none;
+  }
+  input.form-control {
+    background-color: rgba(255, 255, 0, 0.1); /* amarelo bem claro */
+    border: 1px solid #ffea00;
+    color: #ffea00;
+    border-radius: 6px;
+  }
+  input.form-control::placeholder {
+    color: #ffea00aa;
+  }
 </style>
 {% endblock %}
 

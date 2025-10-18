@@ -1,7 +1,66 @@
 {% extends 'estoque/base.html' %}
-{% load widget_tweaks %}
 
-{% block title %}Estoque - Tecnologia de Ponta{% endblock %}
+{% block title %}Excluir Categoria - {{ object.identificacao }}{% endblock %}
+
+{% block custom_css %}
+<style>
+    .delete-category-container {
+        background: rgba(0, 0, 0, 0.75);
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid #ff4444;
+        box-shadow: 0 0 20px #ff444460;
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .delete-category-title {
+        font-size: 1.8rem;
+        color: #ff4444;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .delete-category-text {
+        color: #e0e0e0;
+        margin-bottom: 25px;
+    }
+
+    .delete-category-name {
+        color: #00e0ff;
+        font-weight: 600;
+    }
+
+    .delete-category-actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn-confirm {
+        background: #ff4444;
+        color: #fff;
+        border-radius: 25px;
+        padding: 10px 20px;
+    }
+
+    .btn-confirm:hover {
+        background: #cc0000;
+    }
+
+    .btn-cancel {
+        background: #00e0ff;
+        color: #000;
+        border-radius: 25px;
+        padding: 10px 20px;
+    }
+
+    .btn-cancel:hover {
+        background: #00b0cc;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
 <div class="delete-category-container">

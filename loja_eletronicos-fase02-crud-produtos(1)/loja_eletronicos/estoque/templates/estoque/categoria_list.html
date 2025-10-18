@@ -1,4 +1,80 @@
 {% extends 'estoque/base.html' %}
+
+{% block title %}Categorias - eletronico{% endblock %}
+
+{% block custom_css %}
+<style>
+    .category-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .category-header h1 {
+        color: #00e0ff;
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .btn-add-category {
+        background: #00e0ff;
+        color: #000;
+        border-radius: 25px;
+        padding: 10px 18px;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+    .btn-add-category:hover {
+        background: #00b0cc;
+        transform: scale(1.05);
+    }
+
+    .category-card {
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid #00e0ff;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px #00e0ff80;
+    }
+
+    .category-name {
+        color: #00e0ff;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .category-description {
+        color: #e0e0e0;
+        font-size: 0.95rem;
+        min-height: 50px;
+        margin-bottom: 15px;
+    }
+
+    .category-actions .btn {
+        font-size: 0.85rem;
+        margin: 0 5px;
+        border-radius: 20px;
+        transition: transform 0.2s;
+    }
+
+    .category-actions .btn:hover {
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="category-header">
     <h1>Categorias</h1>
@@ -24,5 +100,4 @@
     </div>
     {% endfor %}
 </div>
-
 {% endblock %}

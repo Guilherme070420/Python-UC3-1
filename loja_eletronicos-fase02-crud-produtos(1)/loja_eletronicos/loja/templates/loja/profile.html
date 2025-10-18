@@ -3,10 +3,46 @@
 
 {% block custom_css %}
 <style>
-  .profile-box { max-width:800px; margin:40px auto; padding:25px; background:rgba(0,0,0,0.75);
-    border:1px solid #00fff2; border-radius:10px; display:flex; gap:20px; align-items:center; }
-  .perfil-img { width:160px; height:160px; object-fit:cover; border-radius:8px; border:1px solid #00fff2; }
-  .profile-actions a{ margin-right:10px; }
+  .profile-box {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 25px;
+    background: rgba(100, 149, 237, 0.85); /* azul mais suave e claro */
+    border: 2px solid #ffea00; /* amarelo forte */
+    border-radius: 10px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    color: #ffea00; /* texto amarelo forte */
+}
+
+.perfil-img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #ffea00; /* borda amarelo forte */
+    box-shadow: 0 0 12px #ffea00;
+}
+
+.profile-actions a {
+    margin-right: 10px;
+    background: linear-gradient(45deg, #ffea00, #fdd835); /* botão amarelo gradiente */
+    color: #000;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.profile-actions a:hover {
+    box-shadow: 0 0 15px #ffea00;
+    transform: scale(1.05);
+}
+
+
 </style>
 {% endblock %}
 

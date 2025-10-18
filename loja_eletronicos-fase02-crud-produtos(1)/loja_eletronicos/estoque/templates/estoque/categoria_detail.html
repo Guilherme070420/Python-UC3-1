@@ -1,4 +1,79 @@
 {% extends 'estoque/base.html' %}
+
+{% block title %}{{ categoria.identificacao }} - Categoria{% endblock %}
+
+{% block custom_css %}
+<style>
+    body {
+            background: linear-gradient(135deg, #001f3f, #000);
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .category-detail-container {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #00e0ff;
+            box-shadow: 0 0 20px #00e0ff50;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .category-title {
+            color: #00e0ff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .category-info {
+            color: #e0e0e0;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .category-actions {
+            text-align: center;
+        }
+
+        .category-actions .btn {
+            margin: 0 5px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #00e0ff;
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background-color: #00b8cc;
+        }
+
+        .btn-warning {
+            background-color: #ffcc00;
+            color: #000;
+        }
+
+        .btn-warning:hover {
+            background-color: #e6b800;
+        }
+    </style>
+</head>
+<body>
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="category-detail-container">
     <div class="category-title">{{ categoria.identificacao }}</div>

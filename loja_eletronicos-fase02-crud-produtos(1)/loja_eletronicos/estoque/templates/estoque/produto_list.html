@@ -1,27 +1,161 @@
 {% extends 'estoque/base.html' %}
 
-{% block title %}Estoque - Tecnologia de Ponta{% endblock %}
+{% block title %}Produtos - tecnologia de ponta{% endblock %}
 
-{% block extra_css %}
-    {{ block.super }} 
+{% block custom_css %}
+<style>
+    /* --- GRID DE PRODUTOS COM CORES SUAVES --- */
+.product-card {
+    background: #fffde7; /* amarelo bem claro */
+    border: 1px solid #90caf9; /* azul claro */
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 15px #90caf980;
+}
+
+.product-card img {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+    filter: brightness(0.95);
+    transition: filter 0.3s;
+}
+
+.product-card:hover img {
+    filter: brightness(1.05);
+}
+
+.product-body {
+    padding: 15px;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #42a5f5; /* azul médio */
+    margin-bottom: 5px;
+}
+
+.product-category {
+    font-size: 0.9rem;
+    color: #5c5c5c;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    color: #1e1e1e;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.product-actions .btn {
+    font-size: 0.85rem;
+    margin-right: 5px;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+
+.product-actions .btn:hover {
+    transform: scale(1.05);
+}
+
+/* Botões */
+.btn-primary {
+    background: #42a5f5; /* azul suave */
+    border: none;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #1e88e5;
+}
+
+.btn-warning {
+    background: #fff176; /* amarelo mais vivo */
+    border: none;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background: #ffe066;
+}
+
+.btn-danger {
+    background: #ef9a9a;
+    border: none;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #e57373;
+}
+
+/* Cabeçalho da lista de produtos */
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product-header h1 {
+    font-size: 2rem;
+    color: #42a5f5;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Botão de adicionar produto */
+.btn-add-product {
+    background: #42a5f5;
+    color: #fff;
+    border-radius: 25px;
+    padding: 10px 18px;
+    font-weight: bold;
+}
+
+.btn-add-product:hover {
+    background: #1e88e5;
+}
+</style>
 
 {% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Nossos Produtos</h1>
-    <a href="{% url 'estoque:produto_create' %}" class="btn btn-success">Adicionar Novo Produto</a>
+
+<div class="product-header">
+    <h1>Produtos em Destaque</h1>
+    <a href="{% url 'estoque:produto_create' %}" class="btn btn-add-product">
+        <i class="bi bi-plus-circle"></i> Adicionar Produto
+    </a>
 </div>
 
 <div class="row">
     {% for produto in produtos %}
     <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 product-card position-relative">
             {% if produto.imagem %}
             <img src="{{ produto.imagem.url }}" class="card-img-top" alt="{{ produto.nome }}" style="height: 200px; object-fit: cover;">
             {% else %}
             <img src="https://placehold.co/300x200.png?text=Sem+Imagem" class="card-img-top" alt="Sem Imagem">
             {% endif %}
+    
+            <!-- Botão flutuante do carrinho -->
+            <a href="{% url 'estoque:adicionar_ao_carrinho' produto.pk %}" 
+               class="btn-cart-icon" 
+               title="Adicionar ao Carrinho">
+                <i class="bi bi-cart-plus"></i>
+            </a>
+    
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ produto.nome }}</h5>
                 <p class="card-text text-muted">{{ produto.categoria.identificacao|default:"Sem Categoria" }}</p>
@@ -36,7 +170,7 @@
     </div>
     {% empty %}
     <div class="col">
-        <p class="text-center">Nenhum produto cadastrado ainda.</p>
+        <p class="text-center text-light">Nenhum produto cadastrado ainda.</p>
     </div>
     {% endfor %}
 </div>

@@ -1,63 +1,144 @@
 {% extends 'estoque/base.html' %}
 {% load widget_tweaks %}
 
-{% block title %}Estoque - Tecnologia de Ponta{% endblock %}
+{% block title %}{{ view_title }} - Wizard Electronics{% endblock %}
 
-{% block extra_css %}
-    {{ block.super }} 
+{% block custom_css %}
+<style>
+    .form-container {
+    background: #fff9c4; /* amarelo claro */
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid #90caf9; /* azul claro */
+    box-shadow: 0 0 20px #90caf980;
+    max-width: 800px;
+    margin: 0 auto;
+}
 
+.form-title {
+    color: #42a5f5; /* azul médio */
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+label {
+    color: #1976d2; /* azul escurecido para boa leitura */
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-control, .form-select {
+    background-color: #fffde7; /* amarelo ainda mais claro */
+    border: 1px solid #90caf9;
+    color: #000;
+    border-radius: 8px;
+    transition: box-shadow 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 10px #64b5f6;
+    outline: none;
+    background-color: #fff8c6;
+}
+
+.form-check-label {
+    color: #1976d2;
+    margin-left: 5px;
+}
+
+.btn-submit {
+    background: #42a5f5; /* azul suave */
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: transform 0.2s;
+}
+
+.btn-submit:hover {
+    background: #1e88e5;
+    transform: scale(1.05);
+}
+
+.btn-cancel {
+    background: #ef9a9a; /* vermelho suave */
+    color: #fff;
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: transform 0.2s;
+}
+
+.btn-cancel:hover {
+    background: #e57373;
+    transform: scale(1.05);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+</style>
 {% endblock %}
 
 {% block content %}
+<div class="form-container">
+    <h1 class="form-title">{{ view_title }}</h1>
 
-<h1>{{ view_title }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    
-    <div class="mb-3">
-        <label for="{{ form.nome.id_for_label }}" class="form-label">Nome do Produto</label>
-        {% render_field form.nome class="form-control" %}
-    </div>
-
-    <div class="mb-3">
-        <label for="{{ form.descricao.id_for_label }}" class="form-label">Descrição</label>
-        {% render_field form.descricao class="form-control" rows="4" %}
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="{{ form.preco.id_for_label }}" class="form-label">Preço</label>
-            {% render_field form.preco class="form-control" %}
+        <div class="mb-3">
+            <label for="{{ form.nome.id_for_label }}" class="form-label">Nome do Produto</label>
+            {% render_field form.nome class="form-control" %}
         </div>
-        <div class="col-md-6">
-            <label for="{{ form.estoque.id_for_label }}" class="form-label">Estoque</label>
-            {% render_field form.estoque class="form-control" %}
-        </div>
-    </div>
-    
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="{{ form.categoria.id_for_label }}" class="form-label">Categoria</label>
-            {% render_field form.categoria class="form-select" %}
-        </div>
-        <div class="col-md-6">
-            <label for="{{ form.tag.id_for_label }}" class="form-label">Tags</label>
-            {% render_field form.tag class="form-select" size="5" %}
-        </div>
-    </div>
-    
-    <div class="mb-3">
-        <label for="{{ form.imagem.id_for_label }}" class="form-label">Imagem do Produto</label>
-        {% render_field form.imagem class="form-control" %}
-    </div>
 
-    <div class="mb-3 form-check">
-        {% render_field form.disponivel class="form-check-input" %}
-        <label for="{{ form.disponivel.id_for_label }}" class="form-check-label">Produto Disponível</label>
-    </div>
+        <div class="mb-3">
+            <label for="{{ form.descricao.id_for_label }}" class="form-label">Descrição</label>
+            {% render_field form.descricao class="form-control" rows="4" %}
+        </div>
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
-    <a href="{% url 'estoque:produto_list' %}" class="btn btn-secondary">Cancelar</a>
-</form>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="{{ form.preco.id_for_label }}" class="form-label">Preço</label>
+                {% render_field form.preco class="form-control" %}
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.estoque.id_for_label }}" class="form-label">Estoque</label>
+                {% render_field form.estoque class="form-control" %}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="{{ form.categoria.id_for_label }}" class="form-label">Categoria</label>
+                {% render_field form.categoria class="form-select" %}
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.tag.id_for_label }}" class="form-label">Tags</label>
+                {% render_field form.tag class="form-select" size="5" %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.imagem.id_for_label }}" class="form-label">Imagem do Produto</label>
+            {% render_field form.imagem class="form-control" %}
+        </div>
+
+        <div class="mb-3 form-check">
+            {% render_field form.disponivel class="form-check-input" %}
+            <label for="{{ form.disponivel.id_for_label }}" class="form-check-label">Produto Disponível</label>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-submit">Salvar</button>
+            <a href="{% url 'estoque:produto_list' %}" class="btn btn-cancel">Cancelar</a>
+        </div>
+    </form>
+</div>
 {% endblock %}

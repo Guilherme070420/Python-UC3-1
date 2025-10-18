@@ -1,42 +1,146 @@
 {% extends 'estoque/base.html' %}
 
-{% block title %}Estoque - Tecnologia de Ponta{% endblock %}
+{% block title %}{{ produto.nome }} - tecnologia de ponta{% endblock %}
 
-{% block extra_css %}
-    {{ block.super }} 
+{% block custom_css %}
+<style>
+    .product-detail-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #00e0ff;
+        box-shadow: 0 0 20px #00e0ff50;
+    }
 
+    .product-image {
+        flex: 1 1 350px;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        border: 1px solid #00e0ff;
+        box-shadow: 0 0 15px #00e0ff50;
+    }
+
+    .product-info {
+        flex: 1 1 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .product-name {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #00e0ff;
+        margin-bottom: 10px;
+    }
+
+    .product-category {
+        font-size: 1rem;
+        color: #cccccc;
+        margin-bottom: 15px;
+    }
+
+    .product-description {
+        color: #e0e0e0;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .product-price {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 20px;
+    }
+
+    .product-actions .btn {
+        margin-right: 10px;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: transform 0.2s;
+    }
+
+    .product-actions .btn:hover {
+        transform: scale(1.05);
+    }
+
+    .btn-buy {
+        background: #00e0ff;
+        color: #000;
+        border: none;
+    }
+
+    .btn-buy:hover {
+        background: #00b0cc;
+    }
+
+    .btn-edit {
+        background: #ffbb33;
+        color: #000;
+        border: none;
+    }
+
+    .btn-delete {
+        background: #ff4444;
+        border: none;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 30px;
+        color: #00e0ff;
+        text-decoration: none;
+        transition: opacity 0.3s;
+    }
+
+    .back-link:hover {
+        opacity: 0.7;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-
-<div class="row">
-    <div class="col-md-6">
+<div class="product-detail-container">
+    <div class="product-image">
         {% if produto.imagem %}
-        <img src="{{ produto.imagem.url }}" class="img-fluid rounded" alt="{{ produto.nome }}">
+            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
         {% else %}
-        <img src="https://via.placeholder.com/600x400.png?text=Sem+Imagem" class="img-fluid rounded" alt="Sem Imagem">
+            <img src="https://placehold.co/500x500?text=Sem+Imagem&font=roboto" alt="Sem imagem">
         {% endif %}
     </div>
-    <div class="col-md-6">
-        <h1>{{ produto.nome }}</h1>
-        <p class="lead">{{ produto.descricao }}</p>
-        <hr>
-        <h3><strong>Preço:</strong> R$ {{ produto.preco }}</h3>
-        <p><strong>Em estoque:</strong> {{ produto.estoque }} unidades</p>
-        <p><strong>Status:</strong> {% if produto.disponivel %}Disponível{% else %}Indisponível{% endif %}</p>
-        <p><strong>Categoria:</strong> {{ produto.categoria.identificacao|default:"N/A" }}</p>
+
+    <div class="product-info">
         <div>
-            <strong>Tags:</strong>
-            {% for tag in produto.tag.all %}
-            <span class="badge bg-secondary">{{ tag.identificacao }}</span>
-            {% empty %}
-            <span class="badge bg-light text-dark">Nenhuma tag</span>
-            {% endfor %}
+            <div class="product-name">{{ produto.nome }}</div>
+            <div class="product-category">
+                Categoria: {{ produto.categoria.identificacao|default:"Sem Categoria" }}
+            </div>
+            <div class="product-description">
+                {{ produto.descricao|default:"Sem descrição disponível." }}
+            </div>
+            <div class="product-price">R$ {{ produto.preco|floatformat:2 }}</div>
         </div>
-        <hr>
-        <a href="{% url 'estoque:produto_update' produto.pk %}" class="btn btn-warning">Editar Produto</a>
-        <a href="{% url 'estoque:produto_list' %}" class="btn btn-secondary">Voltar para a Lista</a>
+
+        <div class="product-actions">
+            <a href="#" class="btn btn-buy"><i class="bi bi-cart-fill"></i> Comprar</a>
+            <a href="{% url 'estoque:produto_update' produto.pk %}" class="btn btn-edit">
+                <i class="bi bi-pencil-square"></i> Editar
+            </a>
+            <a href="{% url 'estoque:produto_delete' produto.pk %}" class="btn btn-delete">
+                <i class="bi bi-trash"></i> Deletar
+            </a>
+        </div>
     </div>
 </div>
 
+<a href="{% url 'estoque:produto_list' %}" class="back-link">
+    ⬅ Voltar à lista de produtos
+</a>
 {% endblock %}

@@ -1,4 +1,81 @@
 {% extends 'estoque/base.html' %}
+
+{% block title %}Excluir Tag - tecnologia de ponta{% endblock %}
+
+{% block custom_css %}
+<style>
+    .delete-tag-container {
+    background-color: #fffde7; /* fundo amarelo claro */
+    border: 1px solid #1e88e5; /* azul forte */
+    border-radius: 10px;
+    padding: 25px;
+    max-width: 600px;
+    margin: 40px auto;
+    color: #1e1e1e;
+    box-shadow: 0 0 20px rgba(30, 136, 229, 0.2); /* sombra azul clara */
+    text-align: center;
+}
+
+.delete-tag-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #1e88e5;
+    text-shadow: 0 0 6px #90caf9;
+    margin-bottom: 15px;
+}
+
+.delete-tag-text {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #424242;
+}
+
+.delete-tag-name {
+    color: #fdd835; /* amarelo vibrante */
+    font-weight: bold;
+}
+
+.delete-tag-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Botão confirmar (azul) */
+.btn-confirm {
+    background-color: #1e88e5;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-confirm:hover {
+    background-color: #1565c0;
+    box-shadow: 0 0 10px #64b5f6;
+}
+
+/* Botão cancelar (amarelo suave) */
+.btn-cancel {
+    background-color: #fbc02d;
+    color: #1e1e1e;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-cancel:hover {
+    background-color: #f9a825;
+    box-shadow: 0 0 10px #fdd835;
+}
+
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="delete-tag-container">
     <div class="delete-tag-title">Excluir Tag</div>

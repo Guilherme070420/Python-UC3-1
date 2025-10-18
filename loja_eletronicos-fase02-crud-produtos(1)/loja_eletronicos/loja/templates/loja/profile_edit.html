@@ -4,10 +4,36 @@
 
 {% block custom_css %}
 <style>
-  .form-card { max-width:720px; margin:40px auto; padding:25px; background:rgba(0,0,0,0.75);
-    border:1px solid #00fff2; border-radius:10px; }
-  label{ color:#00fff2; }
-  .btn-save{ background:#00fff2; color:#000; }
+  .form-card {
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 25px;
+    background: rgba(30, 136, 229, 0.85); /* azul forte translúcido */
+    border: 2px solid #ffea00; /* amarelo forte */
+    border-radius: 10px;
+    color: #ffea00; /* texto amarelo */
+}
+
+label {
+    color: #ffea00; /* amarelo forte */
+    font-weight: bold;
+}
+
+.btn-save {
+    background: linear-gradient(45deg, #ffea00, #fdd835); /* amarelo forte gradiente */
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    box-shadow: 0 0 15px #ffea00;
+    transform: scale(1.05);
+}
 </style>
 {% endblock %}
 
